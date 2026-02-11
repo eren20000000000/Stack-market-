@@ -11,4 +11,4 @@ function Time(Clock) {
 Time(time)
 setInterval(() => {
     Time(time)
-}, 1500);
+}, 1000);
