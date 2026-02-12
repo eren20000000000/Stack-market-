@@ -1,4 +1,4 @@
-let pride = document.getElementById("price")
+let price = document.getElementById("price")
 let time = document.getElementById("time")
 
 function Time(Clock) {
@@ -6,9 +6,26 @@ function Time(Clock) {
     let hours = date.getHours()
     let minutes = date.getMinutes()
     let second = date.getSeconds()
-    Clock.textContent = `Time:- ${hours}:${minutes}:${second}`
+     Clock.textContent = `Time:- ${hours}:${minutes}:${second}`
+   
 }
 Time(time)
+
 setInterval(() => {
     Time(time)
+}, 1000);
+
+
+function Price() {
+    let date = new Date()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    let second = date.getSeconds()
+    let priceValue = (hours * 10) + (minutes * 0.5) + (second * 0.1)
+    price.textContent = `Price:- $${priceValue.toFixed(2)}`
+}
+Price()
+
+setInterval(() => {
+    Price()
 }, 1000);
