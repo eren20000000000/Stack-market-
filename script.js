@@ -1,41 +1,40 @@
-// let price = document.getElementById("price")
-// let time = document.getElementById("time")
+import { stockData } from "./getstockdata.js";
 
-// function Time(Clock) {
-//     let date = new Date()
-//     let hours = date.getHours()
-//     let minutes = date.getMinutes()
-//     let second = date.getSeconds()
-//      Clock.textContent = `Time:- ${hours}:${minutes}:${second}`
-   
-// }
-// Time(time)
+let name = document.getElementById("name");
+let symbol = document.getElementById("symbol");
+let price = document.getElementById("price");
+let time = document.getElementById("time");
+let img = document.getElementById("imgs");
+let previousPrice = null;
 
-// setInterval(() => {
-//     Time(time)
-// }, 1000);
+function render() {
+  let data = stockData();
+  name.textContent = `Name:- ${data.Name}`;
+  symbol.textContent = `Symbol:- ${data.Symbol}`;
+  price.textContent = `Price:- ${data.Price}`;
+  time.textContent = `Time:- ${data.Time}`;
+  
+  console.log(price)
 
 
-// function Price() {
-//     let date = new Date()
-//     let hours = date.getHours()
-//     let minutes = date.getMinutes()
-//     let second = date.getSeconds()
-//     let priceValue = (hours * 10) + (minutes * 0.5) + (second * 0.1)
-//     price.textContent = `Price:- $${priceValue.toFixed(2)}`
-// }
-// Price()
+  if(previousPrice !== null ){
 
-// setInterval(() => {
-//     Price()
-// }, 1000);
-function stockData() {
-    return {
-        name:"ANiME X HOUSE",
-        Symbol:"AXH",
-        price:Math.random().toFixed(2),
-        time:new Date().toLocaleTimeString()
+    if(previousPrice > data.Price){
+        img.src="red.png"
+    } 
+    else if(previousPrice < data.Price) {
+        img.src="green.png"
+    }else{
+        img.src="gray.png"
     }
-}
 
-console.log(stockDate())
+  }
+  previousPrice = data.Price
+
+  
+}
+render();
+
+setInterval(() => {
+  render();
+}, 1000);
